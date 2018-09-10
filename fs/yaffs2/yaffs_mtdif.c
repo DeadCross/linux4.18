@@ -53,13 +53,13 @@ int nandmtd_erase_block(struct yaffs_dev *dev, int block_no)
 	struct erase_info ei;
 	int retval = 0;
 
-	ei.mtd = mtd;
+	//ei.mtd = mtd;
 	ei.addr = addr;
 	ei.len = dev->param.total_bytes_per_chunk * dev->param.chunks_per_block;
-	ei.time = 1000;
-	ei.retries = 2;
-	ei.callback = NULL;
-	ei.priv = (u_long) dev;
+	//ei.time = 1000;
+	//ei.retries = 2;
+	//ei.callback = NULL;
+	//ei.priv = (u_long) dev;
 
 	retval = mtd_erase(mtd, &ei);
 
@@ -182,6 +182,7 @@ static 	int yaffs_mtd_erase(struct yaffs_dev *dev, int block_no)
 		     dev->param.chunks_per_block;
 	addr = ((loff_t) block_no) * block_size;
 
+#if 0
 	ei.mtd = mtd;
 	ei.addr = addr;
 	ei.len = block_size;
@@ -189,6 +190,7 @@ static 	int yaffs_mtd_erase(struct yaffs_dev *dev, int block_no)
 	ei.retries = 2;
 	ei.callback = NULL;
 	ei.priv = (u_long) dev;
+#endif
 
 	retval = mtd_erase(mtd, &ei);
 

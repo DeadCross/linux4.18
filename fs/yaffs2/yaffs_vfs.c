@@ -2136,7 +2136,7 @@ static unsigned yaffs_bg_gc_urgency(struct yaffs_dev *dev)
 
 #ifdef YAFFS_COMPILE_BACKGROUND
 
-#if 0
+#if 1 
 void yaffs_background_waker(unsigned long data)
 #else
 void yaffs_background_waker((struct timer_list *)data)

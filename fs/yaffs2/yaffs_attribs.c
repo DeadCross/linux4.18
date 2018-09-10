@@ -48,7 +48,7 @@ void yaffs_load_attribs_oh(struct yaffs_obj_hdr *oh, struct yaffs_obj *obj)
 
 void yaffs_load_current_time(struct yaffs_obj *obj, int do_a, int do_c)
 {
-	obj->yst_mtime = Y_CURRENT_TIME;
+	//obj->yst_mtime = Y_CURRENT_TIME;
 	if (do_a)
 		obj->yst_atime = obj->yst_mtime;
 	if (do_c)
