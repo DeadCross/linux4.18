@@ -28,6 +28,7 @@
 #include <linux/platform_data/usb-ohci-s3c2410.h>
 #include <linux/usb.h>
 #include <linux/usb/hcd.h>
+#include<mach/regs-clock.h>
 
 #include "ohci.h"
 
@@ -59,6 +60,11 @@ static struct s3c2410_hcd_info *to_s3c2410_info(struct usb_hcd *hcd)
 
 static void s3c2410_start_hc(struct platform_device *dev, struct usb_hcd *hcd)
 {
+	unsigned long upllvalue = (0x78<< 12) | (0x02<< 4) | (0x03);
+	while (upllvalue != __raw_readl(S3C2410_UPLLCON)) {
+		__raw_writel(upllvalue, S3C2410_UPLLCON);
+		mdelay(1);
+	}
 	struct s3c2410_hcd_info *info = dev_get_platdata(&dev->dev);
 
 	dev_dbg(&dev->dev, "s3c2410_start_hc:\n");
